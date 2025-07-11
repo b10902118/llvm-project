@@ -109,11 +109,10 @@ private:
                            // occurred.
     lldb::addr_t real_addr; // Address value that should cause target to stop.
     uint32_t control;       // Breakpoint/watchpoint control value.
-    uint32_t refcount;      // Serves as enable/disable and reference counter.
   };
 
-  struct DREG m_hbr_regs[16]; // Arm native linux hardware breakpoints
-  struct DREG m_hwp_regs[16]; // Arm native linux hardware watchpoints
+  std::array<struct DREG, 16> m_hbr_regs; // Arm native linux hardware breakpoints
+  std::array<struct DREG, 16> m_hwp_regs; // Arm native linux hardware watchpoints
 
   uint32_t m_max_hwp_supported;
   uint32_t m_max_hbp_supported;
